@@ -1,4 +1,6 @@
 import React from "react";
+import Layout from "./components/Layout";
+import { AdobeContextProvider } from "./context/adobe";
 
 interface IProps {
   dialog: HTMLDialogElement;
@@ -8,7 +10,9 @@ interface IProps {
 const App = ({ dialog, selection }: IProps) => {
   return (
     <>
-      <h1>Hello, this is my first plugin</h1>
+      <AdobeContextProvider>
+        <Layout selection={selection} dialog={dialog} />
+      </AdobeContextProvider>
     </>
   );
 };
