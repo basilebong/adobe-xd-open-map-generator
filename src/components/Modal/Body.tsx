@@ -4,7 +4,8 @@ import {
   LatInput,
   LngInput,
   MarkerDisplaySelect,
-  MarkerColorInput
+  MarkerColorInput,
+  ZoomSlider
 } from "components/Form";
 import { MapPreview } from "components/Map";
 import styled from "@emotion/styled";
@@ -24,6 +25,7 @@ const ModalBody = () => (
     <InputGroup>
       <MarkerDisplaySelect />
       <MarkerColorInput />
+      <ZoomSlider />
     </InputGroup>
     <MapPreview />
   </>

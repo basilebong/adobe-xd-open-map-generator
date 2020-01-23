@@ -13,30 +13,8 @@ export interface IMap {
   lat: number;
   lng: number;
   token: string;
-  zoom: TZoom;
+  zoom: number;
   url?: string;
   height: number;
   width: number;
 }
-
-type TZoom =
-  | 1
-  | 2
-  | 3
-  | 4
-  | 5
-  | 6
-  | 7
-  | 8
-  | 9
-  | 10
-  | 11
-  | 12
-  | 13
-  | 14
-  | 15
-  | 16
-  | 17
-  | 18
-  | 19
-  | 20;

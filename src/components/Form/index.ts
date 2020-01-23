@@ -7,6 +7,7 @@ import LatInput from "./LatInput";
 import LngInput from "./LngInput";
 import MarkerDisplaySelect from "./MarkerDisplaySelect";
 import MarkerColorInput from "./MarkerColorInput";
+import ZoomSlider from "./ZoomSlider";
 
 export {
   StyleSelect,
@@ -17,5 +18,6 @@ export {
   LatInput,
   LngInput,
   MarkerDisplaySelect,
-  MarkerColorInput
+  MarkerColorInput,
+  ZoomSlider
 };

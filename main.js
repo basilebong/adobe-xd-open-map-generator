@@ -51893,6 +51893,44 @@ exports.default = StyleSelect;
 
 /***/ }),
 
+/***/ "./src/components/Form/ZoomSlider.tsx":
+/*!********************************************!*\
+  !*** ./src/components/Form/ZoomSlider.tsx ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var ZoomSlider = function () {
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var zoom = mapContext.zoom;
+    var onChange = function (e) {
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                zoom: parseInt(e.currentTarget.value)
+            }
+        });
+    };
+    return (react_1.default.createElement(_1.FormGroup, null,
+        react_1.default.createElement(_1.Label, null,
+            react_1.default.createElement("span", null, "Zoom"),
+            react_1.default.createElement("span", null,
+                100 / (20 / zoom),
+                "%")),
+        react_1.default.createElement("input", { type: "range", min: 1, max: 20, defaultValue: zoom, onChange: function (e) { return onChange(e); } })));
+};
+exports.default = ZoomSlider;
+
+
+/***/ }),
+
 /***/ "./src/components/Form/index.ts":
 /*!**************************************!*\
   !*** ./src/components/Form/index.ts ***!
@@ -51922,6 +51960,8 @@ var MarkerDisplaySelect_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Ma
 exports.MarkerDisplaySelect = MarkerDisplaySelect_1.default;
 var MarkerColorInput_1 = tslib_1.__importDefault(__webpack_require__(/*! ./MarkerColorInput */ "./src/components/Form/MarkerColorInput.tsx"));
 exports.MarkerColorInput = MarkerColorInput_1.default;
+var ZoomSlider_1 = tslib_1.__importDefault(__webpack_require__(/*! ./ZoomSlider */ "./src/components/Form/ZoomSlider.tsx"));
+exports.ZoomSlider = ZoomSlider_1.default;
 
 
 /***/ }),
@@ -51990,7 +52030,7 @@ var default_1 = __webpack_require__(/*! context/map/default */ "./src/context/ma
 var ImageMap = styled_1.default.img({
     height: default_1.defaultMapContext.height + "px",
     width: default_1.defaultMapContext.width + "px",
-    margin: "15px auto"
+    margin: "15px auto 0 auto"
 });
 var MapPreview = function () {
     var mapContext = map_1.useMapContext().mapContext;
@@ -52046,7 +52086,8 @@ var ModalBody = function () { return (react_1.default.createElement(react_1.defa
         react_1.default.createElement(Form_1.LngInput, null)),
     react_1.default.createElement(InputGroup, null,
         react_1.default.createElement(Form_1.MarkerDisplaySelect, null),
-        react_1.default.createElement(Form_1.MarkerColorInput, null)),
+        react_1.default.createElement(Form_1.MarkerColorInput, null),
+        react_1.default.createElement(Form_1.ZoomSlider, null)),
     react_1.default.createElement(Map_1.MapPreview, null))); };
 exports.default = ModalBody;
 
@@ -52072,7 +52113,7 @@ var Footer = styled_1.default.div({
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "flex-end",
-    marginTop: "10px"
+    marginTop: "15px"
 });
 var width = 450;
 var height = 200;
