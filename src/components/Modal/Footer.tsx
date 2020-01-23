@@ -1,5 +1,5 @@
 import React from "react";
-import { useAdobeContext } from "../../context/adobe";
+import { useAdobeContext } from "context/adobe";
 import styled from "@emotion/styled";
 
 const Footer = styled.div({
@@ -25,7 +25,7 @@ const ModalFooter = () => {
       >
         Cancel
       </button>
-      <button uxp-variant="cta" type="button">
+      <button uxp-variant="cta" style={{ marginRight: 0 }} type="button">
         Generate
       </button>
     </Footer>

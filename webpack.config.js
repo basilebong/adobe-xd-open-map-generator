@@ -1,3 +1,5 @@
+const path = require("path");
+
 module.exports = {
   entry: "./src/main.tsx",
   output: {
@@ -48,6 +50,7 @@ module.exports = {
     scenegraph: "scenegraph"
   },
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx"]
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+    modules: [path.resolve(__dirname, "./src/"), "node_modules"]
   }
 };

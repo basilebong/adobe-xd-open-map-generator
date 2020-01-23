@@ -1,6 +1,7 @@
 import React from "react";
 import Layout from "./components/Layout";
 import { AdobeContextProvider } from "./context/adobe";
+import { MapContextProvider } from "./context/map";
 
 interface IProps {
   dialog: HTMLDialogElement;
@@ -11,7 +12,9 @@ const App = ({ dialog, selection }: IProps) => {
   return (
     <>
       <AdobeContextProvider>
-        <Layout selection={selection} dialog={dialog} />
+        <MapContextProvider>
+          <Layout selection={selection} dialog={dialog} />
+        </MapContextProvider>
       </AdobeContextProvider>
     </>
   );

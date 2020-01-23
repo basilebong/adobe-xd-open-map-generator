@@ -1,5 +1,7 @@
 import ModalTitle from "./Title";
 import ModalForm from "./Form";
 import ModalFooter from "./Footer";
+import ModalBody from "./Body";
+import ModalText from "./Text";
 
-export { ModalTitle, ModalForm, ModalFooter };
+export { ModalTitle, ModalForm, ModalFooter, ModalBody, ModalText };

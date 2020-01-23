@@ -51612,13 +51612,139 @@ var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.j
 var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var Layout_1 = tslib_1.__importDefault(__webpack_require__(/*! ./components/Layout */ "./src/components/Layout/index.tsx"));
 var adobe_1 = __webpack_require__(/*! ./context/adobe */ "./src/context/adobe/index.tsx");
+var map_1 = __webpack_require__(/*! ./context/map */ "./src/context/map/index.tsx");
 var App = function (_a) {
     var dialog = _a.dialog, selection = _a.selection;
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(adobe_1.AdobeContextProvider, null,
-            react_1.default.createElement(Layout_1.default, { selection: selection, dialog: dialog }))));
+            react_1.default.createElement(map_1.MapContextProvider, null,
+                react_1.default.createElement(Layout_1.default, { selection: selection, dialog: dialog })))));
 };
 exports.default = App;
+
+
+/***/ }),
+
+/***/ "./src/components/Form/FormGroup.ts":
+/*!******************************************!*\
+  !*** ./src/components/Form/FormGroup.ts ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+exports.default = styled_1.default.div({
+    margin: "15px auto"
+});
+
+
+/***/ }),
+
+/***/ "./src/components/Form/Label.ts":
+/*!**************************************!*\
+  !*** ./src/components/Form/Label.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+exports.default = styled_1.default.label({
+    display: "block",
+    marginBottom: "5px"
+});
+
+
+/***/ }),
+
+/***/ "./src/components/Form/Select.ts":
+/*!***************************************!*\
+  !*** ./src/components/Form/Select.ts ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+exports.default = styled_1.default.select({
+    textTransform: "capitalize",
+    display: "block",
+    width: "100%",
+    margin: 0
+});
+
+
+/***/ }),
+
+/***/ "./src/components/Form/StyleSelect.tsx":
+/*!*********************************************!*\
+  !*** ./src/components/Form/StyleSelect.tsx ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var map_1 = __webpack_require__(/*! models/map */ "./src/models/map.ts");
+var map_2 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var StyleSelect = function () {
+    var _a = map_2.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var options = Object.entries(map_1.EMapStyle).map(function (_a) {
+        var key = _a[0], value = _a[1];
+        return (react_1.default.createElement("option", { key: key, value: value }, value));
+    });
+    var onChange = function (e) {
+        setMapContext({
+            type: map_2.EMapContextActions.SET,
+            payload: {
+                style: e.currentTarget.value
+            }
+        });
+        console.log(mapContext.style);
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(_1.FormGroup, null,
+            react_1.default.createElement(_1.Label, null, "Map Theme"),
+            react_1.default.createElement(_1.Select, { value: mapContext.style, onChange: function (e) { return onChange(e); } }, options))));
+};
+exports.default = StyleSelect;
+
+
+/***/ }),
+
+/***/ "./src/components/Form/index.ts":
+/*!**************************************!*\
+  !*** ./src/components/Form/index.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var StyleSelect_1 = tslib_1.__importDefault(__webpack_require__(/*! ./StyleSelect */ "./src/components/Form/StyleSelect.tsx"));
+exports.StyleSelect = StyleSelect_1.default;
+var FormGroup_1 = tslib_1.__importDefault(__webpack_require__(/*! ./FormGroup */ "./src/components/Form/FormGroup.ts"));
+exports.FormGroup = FormGroup_1.default;
+var Label_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Label */ "./src/components/Form/Label.ts"));
+exports.Label = Label_1.default;
+var Select_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Select */ "./src/components/Form/Select.ts"));
+exports.Select = Select_1.default;
 
 
 /***/ }),
@@ -51635,8 +51761,8 @@ exports.default = App;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var Modal_1 = __webpack_require__(/*! ../Modal */ "./src/components/Modal/index.ts");
-var adobe_1 = __webpack_require__(/*! ../../context/adobe */ "./src/context/adobe/index.tsx");
+var Modal_1 = __webpack_require__(/*! components/Modal */ "./src/components/Modal/index.ts");
+var adobe_1 = __webpack_require__(/*! context/adobe */ "./src/context/adobe/index.tsx");
 var Main = function (_a) {
     var selection = _a.selection, dialog = _a.dialog;
     var setAdobeContext = adobe_1.useAdobeContext().setAdobeContext;
@@ -51652,9 +51778,38 @@ var Main = function (_a) {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(Modal_1.ModalForm, { method: "dialog" },
             react_1.default.createElement(Modal_1.ModalTitle, null, "Open Map Generator"),
-            react_1.default.createElement(Modal_1.ModalFooter, null))));
+            react_1.default.createElement(Modal_1.ModalBody, null),
+            react_1.default.createElement(Modal_1.ModalFooter, null),
+            react_1.default.createElement("hr", null),
+            react_1.default.createElement(Modal_1.ModalText, null, "Open Map Generator is the easiest way to fill a form with an Open Street Map background. This plugin is 100% open source."),
+            react_1.default.createElement("div", null,
+                react_1.default.createElement("a", { href: "https://basilebong.com" }, "Buy me a coffee"),
+                " | ",
+                react_1.default.createElement("a", { href: "https://github.com" }, "Report a bug")))));
 };
 exports.default = Main;
+
+
+/***/ }),
+
+/***/ "./src/components/Modal/Body.tsx":
+/*!***************************************!*\
+  !*** ./src/components/Modal/Body.tsx ***!
+  \***************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var Form_1 = __webpack_require__(/*! components/Form */ "./src/components/Form/index.ts");
+var _1 = __webpack_require__(/*! . */ "./src/components/Modal/index.ts");
+var ModalBody = function () { return (react_1.default.createElement(react_1.default.Fragment, null,
+    react_1.default.createElement(_1.ModalText, null, "Generate your map."),
+    react_1.default.createElement(Form_1.StyleSelect, null))); };
+exports.default = ModalBody;
 
 
 /***/ }),
@@ -51671,7 +51826,7 @@ exports.default = Main;
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
-var adobe_1 = __webpack_require__(/*! ../../context/adobe */ "./src/context/adobe/index.tsx");
+var adobe_1 = __webpack_require__(/*! context/adobe */ "./src/context/adobe/index.tsx");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 var Footer = styled_1.default.div({
     display: "flex",
@@ -51686,7 +51841,7 @@ var ModalFooter = function () {
     };
     return (react_1.default.createElement(Footer, null,
         react_1.default.createElement("button", { "uxp-variant": "secondary", "uxp-quiet": "true", type: "button", onClick: function () { return onClose(); } }, "Cancel"),
-        react_1.default.createElement("button", { "uxp-variant": "cta", type: "button" }, "Generate")));
+        react_1.default.createElement("button", { "uxp-variant": "cta", style: { marginRight: 0 }, type: "button" }, "Generate")));
 };
 exports.default = ModalFooter;
 
@@ -51712,6 +51867,25 @@ exports.default = styled_1.default.form({
 
 /***/ }),
 
+/***/ "./src/components/Modal/Text.ts":
+/*!**************************************!*\
+  !*** ./src/components/Modal/Text.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+exports.default = styled_1.default.p({
+    margin: "15px 0"
+});
+
+
+/***/ }),
+
 /***/ "./src/components/Modal/Title.ts":
 /*!***************************************!*\
   !*** ./src/components/Modal/Title.ts ***!
@@ -51728,7 +51902,8 @@ exports.default = styled_1.default.h1({
     alignItems: "center",
     justifyContent: "space-between",
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    margin: 0
 });
 
 
@@ -51751,6 +51926,10 @@ var Form_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Form */ "./src/co
 exports.ModalForm = Form_1.default;
 var Footer_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Footer */ "./src/components/Modal/Footer.tsx"));
 exports.ModalFooter = Footer_1.default;
+var Body_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Body */ "./src/components/Modal/Body.tsx"));
+exports.ModalBody = Body_1.default;
+var Text_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Text */ "./src/components/Modal/Text.ts"));
+exports.ModalText = Text_1.default;
 
 
 /***/ }),
@@ -51793,6 +51972,66 @@ exports.useAdobeContext = function () { return react_1.useContext(AdobeContext);
 
 /***/ }),
 
+/***/ "./src/context/map/default.ts":
+/*!************************************!*\
+  !*** ./src/context/map/default.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var map_1 = __webpack_require__(/*! models/map */ "./src/models/map.ts");
+exports.defaultMapContext = {
+    lng: "-73.989308",
+    lat: "40.741895",
+    displayMarker: true,
+    style: map_1.EMapStyle.STANDARD
+};
+
+
+/***/ }),
+
+/***/ "./src/context/map/index.tsx":
+/*!***********************************!*\
+  !*** ./src/context/map/index.tsx ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var lodash_1 = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
+var default_1 = __webpack_require__(/*! ./default */ "./src/context/map/default.ts");
+var EMapContextActions;
+(function (EMapContextActions) {
+    EMapContextActions["SET"] = "set";
+})(EMapContextActions = exports.EMapContextActions || (exports.EMapContextActions = {}));
+var initialMapContext = {
+    mapContext: default_1.defaultMapContext,
+    setMapContext: function () { }
+};
+var reducer = function (state, action) {
+    switch (action.type) {
+        case EMapContextActions.SET:
+            return lodash_1.merge(state, action.payload);
+    }
+};
+var MapContext = react_1.createContext(initialMapContext);
+exports.MapContextProvider = function (_a) {
+    var children = _a.children;
+    var _b = react_1.useReducer(reducer, default_1.defaultMapContext), state = _b[0], dispatch = _b[1];
+    return (react_1.default.createElement(MapContext.Provider, { value: { mapContext: state, setMapContext: dispatch } }, children));
+};
+exports.useMapContext = function () { return react_1.useContext(MapContext); };
+
+
+/***/ }),
+
 /***/ "./src/main.tsx":
 /*!**********************!*\
   !*** ./src/main.tsx ***!
@@ -51824,6 +52063,27 @@ module.exports = {
         initApp: initApp
     }
 };
+
+
+/***/ }),
+
+/***/ "./src/models/map.ts":
+/*!***************************!*\
+  !*** ./src/models/map.ts ***!
+  \***************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var EMapStyle;
+(function (EMapStyle) {
+    EMapStyle["STANDARD"] = "standard";
+    EMapStyle["LIGHT"] = "silver";
+    EMapStyle["DARK"] = "dark";
+    EMapStyle["RETRO"] = "retro";
+})(EMapStyle = exports.EMapStyle || (exports.EMapStyle = {}));
 
 
 /***/ }),

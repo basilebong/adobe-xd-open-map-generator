@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./src/",
     "outDir": "build/dist",
     "target": "ES5",
     "lib": ["es6", "dom"],
@@ -9,7 +9,7 @@
     "jsx": "react",
     "module": "CommonJS",
     "moduleResolution": "Node",
-    "rootDir": "src",
+    "rootDir": ".",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -28,8 +28,8 @@
     "acceptance-tests",
     "webpack",
     "jest",
-    "src/setupTests.ts",
-    "main.js",
-    "webpack.config.js"
+    "src/setupTests.ts"
+    // "main.js",
+    // "webpack.config.js"
   ]
 }

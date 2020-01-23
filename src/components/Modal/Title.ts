@@ -4,5 +4,6 @@ export default styled.h1({
   alignItems: "center",
   justifyContent: "space-between",
   display: "flex",
-  flexDirection: "row"
+  flexDirection: "row",
+  margin: 0
 });
