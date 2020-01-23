@@ -36,8 +36,8 @@ const Main = ({ selection, dialog }: IProps) => {
         <ModalFooter />
         <hr />
         <ModalText>
-          Open Map Generator is the easiest way to fill a form with an Open
-          Street Map background. This plugin is 100% open source.
+          This plugin build by &nbsp;
+          <a href="https://basilebong.com">Basile Bong</a> is 100% open source.
         </ModalText>
         <div>
           <a href="https://basilebong.com">Buy me a coffee</a>

@@ -51781,7 +51781,10 @@ var Main = function (_a) {
             react_1.default.createElement(Modal_1.ModalBody, null),
             react_1.default.createElement(Modal_1.ModalFooter, null),
             react_1.default.createElement("hr", null),
-            react_1.default.createElement(Modal_1.ModalText, null, "Open Map Generator is the easiest way to fill a form with an Open Street Map background. This plugin is 100% open source."),
+            react_1.default.createElement(Modal_1.ModalText, null,
+                "This plugin build by \u00A0",
+                react_1.default.createElement("a", { href: "https://basilebong.com" }, "Basile Bong"),
+                " is 100% open source."),
             react_1.default.createElement("div", null,
                 react_1.default.createElement("a", { href: "https://basilebong.com" }, "Buy me a coffee"),
                 " | ",
@@ -51805,9 +51808,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var Form_1 = __webpack_require__(/*! components/Form */ "./src/components/Form/index.ts");
-var _1 = __webpack_require__(/*! . */ "./src/components/Modal/index.ts");
 var ModalBody = function () { return (react_1.default.createElement(react_1.default.Fragment, null,
-    react_1.default.createElement(_1.ModalText, null, "Generate your map."),
     react_1.default.createElement(Form_1.StyleSelect, null))); };
 exports.default = ModalBody;
 
