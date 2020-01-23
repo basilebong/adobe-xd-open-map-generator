@@ -6,6 +6,7 @@ import Input from "./Input";
 import LatInput from "./LatInput";
 import LngInput from "./LngInput";
 import MarkerDisplaySelect from "./MarkerDisplaySelect";
+import MarkerColorInput from "./MarkerColorInput";
 
 export {
   StyleSelect,
@@ -15,5 +16,6 @@ export {
   Input,
   LatInput,
   LngInput,
-  MarkerDisplaySelect
+  MarkerDisplaySelect,
+  MarkerColorInput
 };

@@ -1,27 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useMapContext } from "context/map";
 import styled from "@emotion/styled";
 
-const width = 450;
-const height = 200;
+import { defaultMapContext } from "context/map/default";
 
-const Imagemap = styled.img({
-  height: height + "px",
-  width: width + "px",
-  margin: "15px auto"
+const ImageMap = styled.img({
+  height: defaultMapContext.height + "px",
+  width: defaultMapContext.width + "px",
+  margin: "15px auto 0 auto"
 });
 
 const MapPreview = () => {
   const { mapContext } = useMapContext();
-  const { lat, lng, token, style, zoom } = mapContext;
+  const { url } = mapContext;
 
-  return (
-    <>
-      <Imagemap
-        src={`https://api.mapbox.com/styles/v1/mapbox/${style}/static/pin-l(${lat},${lng})/${lat},${lng},${zoom},0.00,0.00/${width}x${height}@2x?access_token=${token}`}
-      />
-    </>
-  );
+  useEffect(() => {}, [url]);
+
+  return <>{url ? <ImageMap src={url} /> : null}</>;
 };
 
 export default MapPreview;

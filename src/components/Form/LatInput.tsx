@@ -8,10 +8,11 @@ const LatInput = () => {
   const { lat } = mapContext;
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+    const currentLat = e.currentTarget.value.replace(",", ".");
     setMapContext({
       type: EMapContextActions.SET,
       payload: {
-        lat: parseInt(e.currentTarget.value)
+        lat: parseFloat(currentLat) | 0
       }
     });
   };
@@ -20,7 +21,7 @@ const LatInput = () => {
     <>
       <FormGroup>
         <Label>Latitude</Label>
-        <Input type="text" value={lat} onChange={e => onChange(e)} />
+        <Input type="number" value={lat} onChange={e => onChange(e)} />
       </FormGroup>
     </>
   );

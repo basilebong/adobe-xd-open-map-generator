@@ -19,7 +19,7 @@ const MarkerDisplaySelect = () => {
   return (
     <>
       <FormGroup>
-        <Label>Display marker</Label>
+        <Label>Marker Display</Label>
         <Select value={displayMarker.toString()} onChange={e => onChange(e)}>
           <option value="true">Show</option>
           <option value="false">Hide</option>

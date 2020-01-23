@@ -9,10 +9,14 @@ export enum EMapStyle {
 export interface IMap {
   style: EMapStyle;
   displayMarker: boolean;
+  markerColor: string;
   lat: number;
   lng: number;
   token: string;
   zoom: TZoom;
+  url?: string;
+  height: number;
+  width: number;
 }
 
 type TZoom =

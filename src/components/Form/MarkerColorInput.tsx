@@ -5,14 +5,16 @@ import { useMapContext, EMapContextActions } from "context/map";
 
 const LngInput = () => {
   const { mapContext, setMapContext } = useMapContext();
-  const { lng } = mapContext;
+  const { markerColor } = mapContext;
 
   const onChange = (e: React.FormEvent<HTMLInputElement>) => {
-    const currentLng = e.currentTarget.value.replace(",", ".");
+    const value = e.currentTarget.value;
+    const hexColor =
+      value.substr(0, 1) === "#" ? value.substr(1, 6) : value.substr(0, 6);
     setMapContext({
       type: EMapContextActions.SET,
       payload: {
-        lng: parseFloat(currentLng) | 0
+        markerColor: hexColor
       }
     });
   };
@@ -20,8 +22,8 @@ const LngInput = () => {
   return (
     <>
       <FormGroup>
-        <Label>Longitude</Label>
-        <Input type="number" value={lng} onChange={e => onChange(e)} />
+        <Label>Marker Color</Label>
+        <Input type="text" value={markerColor} onChange={e => onChange(e)} />
       </FormGroup>
     </>
   );

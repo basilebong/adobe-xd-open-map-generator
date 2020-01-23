@@ -51638,7 +51638,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 exports.default = styled_1.default.div({
-    margin: "15px 5px 0 5px "
+    margin: "15px 5px 0 5px ",
+    flex: 1
 });
 
 
@@ -51703,17 +51704,18 @@ var LatInput = function () {
     var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
     var lat = mapContext.lat;
     var onChange = function (e) {
+        var currentLat = e.currentTarget.value.replace(",", ".");
         setMapContext({
             type: map_1.EMapContextActions.SET,
             payload: {
-                lat: parseInt(e.currentTarget.value)
+                lat: parseFloat(currentLat) | 0
             }
         });
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(_1.FormGroup, null,
             react_1.default.createElement(_1.Label, null, "Latitude"),
-            react_1.default.createElement(_1.Input, { type: "text", value: lat, onChange: function (e) { return onChange(e); } }))));
+            react_1.default.createElement(_1.Input, { type: "number", value: lat, onChange: function (e) { return onChange(e); } }))));
 };
 exports.default = LatInput;
 
@@ -51738,17 +51740,55 @@ var LngInput = function () {
     var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
     var lng = mapContext.lng;
     var onChange = function (e) {
+        var currentLng = e.currentTarget.value.replace(",", ".");
         setMapContext({
             type: map_1.EMapContextActions.SET,
             payload: {
-                lng: parseInt(e.currentTarget.value)
+                lng: parseFloat(currentLng) | 0
             }
         });
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(_1.FormGroup, null,
             react_1.default.createElement(_1.Label, null, "Longitude"),
-            react_1.default.createElement(_1.Input, { type: "text", value: lng, onChange: function (e) { return onChange(e); } }))));
+            react_1.default.createElement(_1.Input, { type: "number", value: lng, onChange: function (e) { return onChange(e); } }))));
+};
+exports.default = LngInput;
+
+
+/***/ }),
+
+/***/ "./src/components/Form/MarkerColorInput.tsx":
+/*!**************************************************!*\
+  !*** ./src/components/Form/MarkerColorInput.tsx ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var LngInput = function () {
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var markerColor = mapContext.markerColor;
+    var onChange = function (e) {
+        var value = e.currentTarget.value;
+        var hexColor = value.substr(0, 1) === "#" ? value.substr(1, 6) : value.substr(0, 6);
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                markerColor: hexColor
+            }
+        });
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(_1.FormGroup, null,
+            react_1.default.createElement(_1.Label, null, "Marker Color"),
+            react_1.default.createElement(_1.Input, { type: "text", value: markerColor, onChange: function (e) { return onChange(e); } }))));
 };
 exports.default = LngInput;
 
@@ -51782,7 +51822,7 @@ var MarkerDisplaySelect = function () {
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(_1.FormGroup, null,
-            react_1.default.createElement(_1.Label, null, "Display marker"),
+            react_1.default.createElement(_1.Label, null, "Marker Display"),
             react_1.default.createElement(_1.Select, { value: displayMarker.toString(), onChange: function (e) { return onChange(e); } },
                 react_1.default.createElement("option", { value: "true" }, "Show"),
                 react_1.default.createElement("option", { value: "false" }, "Hide")))));
@@ -51842,7 +51882,6 @@ var StyleSelect = function () {
                 style: e.currentTarget.value
             }
         });
-        console.log(mapContext.style);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(_1.FormGroup, null,
@@ -51881,6 +51920,8 @@ var LngInput_1 = tslib_1.__importDefault(__webpack_require__(/*! ./LngInput */ "
 exports.LngInput = LngInput_1.default;
 var MarkerDisplaySelect_1 = tslib_1.__importDefault(__webpack_require__(/*! ./MarkerDisplaySelect */ "./src/components/Form/MarkerDisplaySelect.tsx"));
 exports.MarkerDisplaySelect = MarkerDisplaySelect_1.default;
+var MarkerColorInput_1 = tslib_1.__importDefault(__webpack_require__(/*! ./MarkerColorInput */ "./src/components/Form/MarkerColorInput.tsx"));
+exports.MarkerColorInput = MarkerColorInput_1.default;
 
 
 /***/ }),
@@ -51942,21 +51983,20 @@ exports.default = Main;
 
 Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var react_1 = tslib_1.__importStar(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
-var width = 450;
-var height = 200;
-var Imagemap = styled_1.default.img({
-    height: height + "px",
-    width: width + "px",
+var default_1 = __webpack_require__(/*! context/map/default */ "./src/context/map/default.ts");
+var ImageMap = styled_1.default.img({
+    height: default_1.defaultMapContext.height + "px",
+    width: default_1.defaultMapContext.width + "px",
     margin: "15px auto"
 });
 var MapPreview = function () {
     var mapContext = map_1.useMapContext().mapContext;
-    var lat = mapContext.lat, lng = mapContext.lng, token = mapContext.token, style = mapContext.style, zoom = mapContext.zoom;
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(Imagemap, { src: "https://api.mapbox.com/styles/v1/mapbox/" + style + "/static/pin-l(" + lat + "," + lng + ")/" + lat + "," + lng + "," + zoom + ",0.00,0.00/" + width + "x" + height + "@2x?access_token=" + token })));
+    var url = mapContext.url;
+    react_1.useEffect(function () { }, [url]);
+    return react_1.default.createElement(react_1.default.Fragment, null, url ? react_1.default.createElement(ImageMap, { src: url }) : null);
 };
 exports.default = MapPreview;
 
@@ -52005,7 +52045,8 @@ var ModalBody = function () { return (react_1.default.createElement(react_1.defa
         react_1.default.createElement(Form_1.LatInput, null),
         react_1.default.createElement(Form_1.LngInput, null)),
     react_1.default.createElement(InputGroup, null,
-        react_1.default.createElement(Form_1.MarkerDisplaySelect, null)),
+        react_1.default.createElement(Form_1.MarkerDisplaySelect, null),
+        react_1.default.createElement(Form_1.MarkerColorInput, null)),
     react_1.default.createElement(Map_1.MapPreview, null))); };
 exports.default = ModalBody;
 
@@ -52026,20 +52067,34 @@ var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.j
 var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var adobe_1 = __webpack_require__(/*! context/adobe */ "./src/context/adobe/index.tsx");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
 var Footer = styled_1.default.div({
     display: "flex",
     alignItems: "flex-end",
-    justifyContent: "flex-end"
+    justifyContent: "flex-end",
+    marginTop: "10px"
 });
+var width = 450;
+var height = 200;
 var ModalFooter = function () {
     var adobeContext = adobe_1.useAdobeContext().adobeContext;
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
     var dialog = adobeContext.dialog;
+    var style = mapContext.style, markerColor = mapContext.markerColor, lat = mapContext.lat, lng = mapContext.lng, zoom = mapContext.zoom, token = mapContext.token;
     var onClose = function () {
         return dialog ? dialog.close() : console.error("Missing dialog");
     };
+    var onPreview = function () {
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                url: "https://api.mapbox.com/styles/v1/mapbox/" + style + "/static/pin-l+" + markerColor + "(" + lat + "," + lng + ")/" + lat + "," + lng + "," + zoom + ",0.00,0.00/" + width + "x" + height + "@2x?access_token=" + token
+            }
+        });
+    };
     return (react_1.default.createElement(Footer, null,
         react_1.default.createElement("button", { "uxp-variant": "secondary", "uxp-quiet": "true", type: "button", onClick: function () { return onClose(); } }, "Cancel"),
-        react_1.default.createElement("button", { type: "button", "uxp-variant": "primary" }, "Preview"),
+        react_1.default.createElement("button", { type: "button", "uxp-variant": "primary", onClick: function () { return onPreview(); } }, "Preview"),
         react_1.default.createElement("button", { "uxp-variant": "cta", style: { marginRight: 0 }, type: "button" }, "Generate")));
 };
 exports.default = ModalFooter;
@@ -52184,7 +52239,10 @@ exports.defaultMapContext = {
     lat: 4.351721,
     zoom: 14,
     displayMarker: true,
+    markerColor: "333333",
     style: map_1.EMapStyle.STANDARD,
+    height: 200,
+    width: 450,
     token: "pk.eyJ1IjoiYmFzaWxlYm9uZyIsImEiOiJjazVxcDJ4c2cwNGdwM2ptcXdna3d6Mm4xIn0.JU3kb17Q2P2EdibssC6QuQ"
 };
 
@@ -52216,7 +52274,7 @@ var initialMapContext = {
 var reducer = function (state, action) {
     switch (action.type) {
         case EMapContextActions.SET:
-            return lodash_1.merge(state, action.payload);
+            return lodash_1.merge(tslib_1.__assign({}, state), action.payload);
     }
 };
 var MapContext = react_1.createContext(initialMapContext);

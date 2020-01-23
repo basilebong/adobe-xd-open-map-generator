@@ -20,7 +20,6 @@ const StyleSelect = () => {
         style: e.currentTarget.value as EMapStyle
       }
     });
-    console.log(mapContext.style);
   };
 
   return (
