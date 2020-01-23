@@ -25,6 +25,9 @@ const ModalFooter = () => {
       >
         Cancel
       </button>
+      <button type="button" uxp-variant="primary">
+        Preview
+      </button>
       <button uxp-variant="cta" style={{ marginRight: 0 }} type="button">
         Generate
       </button>

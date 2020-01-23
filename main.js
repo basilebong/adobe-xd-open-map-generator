@@ -51638,7 +51638,28 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 exports.default = styled_1.default.div({
-    margin: "15px auto"
+    margin: "15px 5px 0 5px "
+});
+
+
+/***/ }),
+
+/***/ "./src/components/Form/Input.ts":
+/*!**************************************!*\
+  !*** ./src/components/Form/Input.ts ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+exports.default = styled_1.default.input({
+    display: "block",
+    width: "100%",
+    margin: 0
 });
 
 
@@ -51660,6 +51681,113 @@ exports.default = styled_1.default.label({
     display: "block",
     marginBottom: "5px"
 });
+
+
+/***/ }),
+
+/***/ "./src/components/Form/LatInput.tsx":
+/*!******************************************!*\
+  !*** ./src/components/Form/LatInput.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var LatInput = function () {
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var lat = mapContext.lat;
+    var onChange = function (e) {
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                lat: parseInt(e.currentTarget.value)
+            }
+        });
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(_1.FormGroup, null,
+            react_1.default.createElement(_1.Label, null, "Latitude"),
+            react_1.default.createElement(_1.Input, { type: "text", value: lat, onChange: function (e) { return onChange(e); } }))));
+};
+exports.default = LatInput;
+
+
+/***/ }),
+
+/***/ "./src/components/Form/LngInput.tsx":
+/*!******************************************!*\
+  !*** ./src/components/Form/LngInput.tsx ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var LngInput = function () {
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var lng = mapContext.lng;
+    var onChange = function (e) {
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                lng: parseInt(e.currentTarget.value)
+            }
+        });
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(_1.FormGroup, null,
+            react_1.default.createElement(_1.Label, null, "Longitude"),
+            react_1.default.createElement(_1.Input, { type: "text", value: lng, onChange: function (e) { return onChange(e); } }))));
+};
+exports.default = LngInput;
+
+
+/***/ }),
+
+/***/ "./src/components/Form/MarkerDisplaySelect.tsx":
+/*!*****************************************************!*\
+  !*** ./src/components/Form/MarkerDisplaySelect.tsx ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var MarkerDisplaySelect = function () {
+    var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
+    var displayMarker = mapContext.displayMarker;
+    var onChange = function (e) {
+        setMapContext({
+            type: map_1.EMapContextActions.SET,
+            payload: {
+                displayMarker: e.currentTarget.value === "true"
+            }
+        });
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(_1.FormGroup, null,
+            react_1.default.createElement(_1.Label, null, "Display marker"),
+            react_1.default.createElement(_1.Select, { value: displayMarker.toString(), onChange: function (e) { return onChange(e); } },
+                react_1.default.createElement("option", { value: "true" }, "Show"),
+                react_1.default.createElement("option", { value: "false" }, "Hide")))));
+};
+exports.default = MarkerDisplaySelect;
 
 
 /***/ }),
@@ -51705,7 +51833,7 @@ var StyleSelect = function () {
     var _a = map_2.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
     var options = Object.entries(map_1.EMapStyle).map(function (_a) {
         var key = _a[0], value = _a[1];
-        return (react_1.default.createElement("option", { key: key, value: value }, value));
+        return (react_1.default.createElement("option", { key: key, value: value }, key.toString().toLowerCase()));
     });
     var onChange = function (e) {
         setMapContext({
@@ -51745,6 +51873,14 @@ var Label_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Label */ "./src/
 exports.Label = Label_1.default;
 var Select_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Select */ "./src/components/Form/Select.ts"));
 exports.Select = Select_1.default;
+var Input_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Input */ "./src/components/Form/Input.ts"));
+exports.Input = Input_1.default;
+var LatInput_1 = tslib_1.__importDefault(__webpack_require__(/*! ./LatInput */ "./src/components/Form/LatInput.tsx"));
+exports.LatInput = LatInput_1.default;
+var LngInput_1 = tslib_1.__importDefault(__webpack_require__(/*! ./LngInput */ "./src/components/Form/LngInput.tsx"));
+exports.LngInput = LngInput_1.default;
+var MarkerDisplaySelect_1 = tslib_1.__importDefault(__webpack_require__(/*! ./MarkerDisplaySelect */ "./src/components/Form/MarkerDisplaySelect.tsx"));
+exports.MarkerDisplaySelect = MarkerDisplaySelect_1.default;
 
 
 /***/ }),
@@ -51795,6 +51931,55 @@ exports.default = Main;
 
 /***/ }),
 
+/***/ "./src/components/Map/Preview.tsx":
+/*!****************************************!*\
+  !*** ./src/components/Map/Preview.tsx ***!
+  \****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
+var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+var width = 450;
+var height = 200;
+var Imagemap = styled_1.default.img({
+    height: height + "px",
+    width: width + "px",
+    margin: "15px auto"
+});
+var MapPreview = function () {
+    var mapContext = map_1.useMapContext().mapContext;
+    var lat = mapContext.lat, lng = mapContext.lng, token = mapContext.token, style = mapContext.style, zoom = mapContext.zoom;
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(Imagemap, { src: "https://api.mapbox.com/styles/v1/mapbox/" + style + "/static/pin-l(" + lat + "," + lng + ")/" + lat + "," + lng + "," + zoom + ",0.00,0.00/" + width + "x" + height + "@2x?access_token=" + token })));
+};
+exports.default = MapPreview;
+
+
+/***/ }),
+
+/***/ "./src/components/Map/index.ts":
+/*!*************************************!*\
+  !*** ./src/components/Map/index.ts ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+var Preview_1 = tslib_1.__importDefault(__webpack_require__(/*! ./Preview */ "./src/components/Map/Preview.tsx"));
+exports.MapPreview = Preview_1.default;
+
+
+/***/ }),
+
 /***/ "./src/components/Modal/Body.tsx":
 /*!***************************************!*\
   !*** ./src/components/Modal/Body.tsx ***!
@@ -51808,8 +51993,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 var Form_1 = __webpack_require__(/*! components/Form */ "./src/components/Form/index.ts");
+var Map_1 = __webpack_require__(/*! components/Map */ "./src/components/Map/index.ts");
+var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
+var InputGroup = styled_1.default.div({
+    display: "flex",
+    margin: 0
+});
 var ModalBody = function () { return (react_1.default.createElement(react_1.default.Fragment, null,
-    react_1.default.createElement(Form_1.StyleSelect, null))); };
+    react_1.default.createElement(InputGroup, null,
+        react_1.default.createElement(Form_1.StyleSelect, null),
+        react_1.default.createElement(Form_1.LatInput, null),
+        react_1.default.createElement(Form_1.LngInput, null)),
+    react_1.default.createElement(InputGroup, null,
+        react_1.default.createElement(Form_1.MarkerDisplaySelect, null)),
+    react_1.default.createElement(Map_1.MapPreview, null))); };
 exports.default = ModalBody;
 
 
@@ -51842,6 +52039,7 @@ var ModalFooter = function () {
     };
     return (react_1.default.createElement(Footer, null,
         react_1.default.createElement("button", { "uxp-variant": "secondary", "uxp-quiet": "true", type: "button", onClick: function () { return onClose(); } }, "Cancel"),
+        react_1.default.createElement("button", { type: "button", "uxp-variant": "primary" }, "Preview"),
         react_1.default.createElement("button", { "uxp-variant": "cta", style: { marginRight: 0 }, type: "button" }, "Generate")));
 };
 exports.default = ModalFooter;
@@ -51862,7 +52060,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 exports.default = styled_1.default.form({
-    width: "333px"
+    width: "450px"
 });
 
 
@@ -51900,10 +52098,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var tslib_1 = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 exports.default = styled_1.default.h1({
-    alignItems: "center",
-    justifyContent: "space-between",
-    display: "flex",
-    flexDirection: "row",
+    textAlign: "center",
     margin: 0
 });
 
@@ -51985,10 +52180,12 @@ exports.useAdobeContext = function () { return react_1.useContext(AdobeContext);
 Object.defineProperty(exports, "__esModule", { value: true });
 var map_1 = __webpack_require__(/*! models/map */ "./src/models/map.ts");
 exports.defaultMapContext = {
-    lng: "-73.989308",
-    lat: "40.741895",
+    lng: 50.850346,
+    lat: 4.351721,
+    zoom: 14,
     displayMarker: true,
-    style: map_1.EMapStyle.STANDARD
+    style: map_1.EMapStyle.STANDARD,
+    token: "pk.eyJ1IjoiYmFzaWxlYm9uZyIsImEiOiJjazVxcDJ4c2cwNGdwM2ptcXdna3d6Mm4xIn0.JU3kb17Q2P2EdibssC6QuQ"
 };
 
 
@@ -52080,10 +52277,11 @@ module.exports = {
 Object.defineProperty(exports, "__esModule", { value: true });
 var EMapStyle;
 (function (EMapStyle) {
-    EMapStyle["STANDARD"] = "standard";
-    EMapStyle["LIGHT"] = "silver";
-    EMapStyle["DARK"] = "dark";
-    EMapStyle["RETRO"] = "retro";
+    EMapStyle["STANDARD"] = "streets-v11";
+    EMapStyle["LIGHT"] = "light-v10";
+    EMapStyle["DARK"] = "dark-v10";
+    EMapStyle["RETRO"] = "outdoors-v11";
+    EMapStyle["SATELLITE"] = "satellite-streets-v11";
 })(EMapStyle = exports.EMapStyle || (exports.EMapStyle = {}));
 
 

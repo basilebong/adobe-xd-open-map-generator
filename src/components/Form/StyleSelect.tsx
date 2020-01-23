@@ -9,7 +9,7 @@ const StyleSelect = () => {
 
   const options = Object.entries(EMapStyle).map(([key, value]) => (
     <option key={key} value={value}>
-      {value}
+      {key.toString().toLowerCase()}
     </option>
   ));
 

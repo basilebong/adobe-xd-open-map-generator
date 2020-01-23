@@ -1,13 +1,38 @@
 export enum EMapStyle {
-  STANDARD = "standard",
-  LIGHT = "silver",
-  DARK = "dark",
-  RETRO = "retro"
+  STANDARD = "streets-v11",
+  LIGHT = "light-v10",
+  DARK = "dark-v10",
+  RETRO = "outdoors-v11",
+  SATELLITE = "satellite-streets-v11"
 }
 
 export interface IMap {
   style: EMapStyle;
   displayMarker: boolean;
-  lat: string;
-  lng: string;
+  lat: number;
+  lng: number;
+  token: string;
+  zoom: TZoom;
 }
+
+type TZoom =
+  | 1
+  | 2
+  | 3
+  | 4
+  | 5
+  | 6
+  | 7
+  | 8
+  | 9
+  | 10
+  | 11
+  | 12
+  | 13
+  | 14
+  | 15
+  | 16
+  | 17
+  | 18
+  | 19
+  | 20;
