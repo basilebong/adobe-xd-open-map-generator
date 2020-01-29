@@ -4,8 +4,7 @@ import {
   ModalTitle,
   ModalForm,
   ModalFooter,
-  ModalBody,
-  ModalText
+  ModalBody
 } from "components/Modal";
 
 import { useAdobeContext, EAdobeContextActions } from "context/adobe";
@@ -34,16 +33,6 @@ const Main = ({ selection, dialog }: IProps) => {
         <ModalTitle>Open Map Generator</ModalTitle>
         <ModalBody />
         <ModalFooter />
-        <hr />
-        <ModalText>
-          This plugin build by &nbsp;
-          <a href="https://basilebong.com">Basile Bong</a> is 100% open source.
-        </ModalText>
-        <div>
-          <a href="https://basilebong.com">Buy me a coffee</a>
-          {" | "}
-          <a href="https://github.com">Report a bug</a>
-        </div>
       </ModalForm>
     </>
   );

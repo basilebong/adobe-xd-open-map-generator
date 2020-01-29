@@ -51774,7 +51774,7 @@ var _1 = __webpack_require__(/*! . */ "./src/components/Form/index.ts");
 var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
 var LngInput = function () {
     var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
-    var markerColor = mapContext.markerColor;
+    var markerColor = mapContext.markerColor, displayMarker = mapContext.displayMarker;
     var onChange = function (e) {
         var value = e.currentTarget.value;
         var hexColor = value.substr(0, 1) === "#" ? value.substr(1, 6) : value.substr(0, 6);
@@ -51785,10 +51785,9 @@ var LngInput = function () {
             }
         });
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(_1.FormGroup, null,
-            react_1.default.createElement(_1.Label, null, "Marker Color"),
-            react_1.default.createElement(_1.Input, { type: "text", value: markerColor, onChange: function (e) { return onChange(e); } }))));
+    return (react_1.default.createElement(react_1.default.Fragment, null, displayMarker ? (react_1.default.createElement(_1.FormGroup, null,
+        react_1.default.createElement(_1.Label, null, "Marker Color"),
+        react_1.default.createElement(_1.Input, { type: "text", value: markerColor, onChange: function (e) { return onChange(e); } }))) : null));
 };
 exports.default = LngInput;
 
@@ -51920,10 +51919,10 @@ var ZoomSlider = function () {
     };
     return (react_1.default.createElement(_1.FormGroup, null,
         react_1.default.createElement(_1.Label, null,
-            react_1.default.createElement("span", null, "Zoom"),
             react_1.default.createElement("span", null,
+                "Zoom (",
                 100 / (20 / zoom),
-                "%")),
+                "%)")),
         react_1.default.createElement("input", { type: "range", min: 1, max: 20, defaultValue: zoom, onChange: function (e) { return onChange(e); } })));
 };
 exports.default = ZoomSlider;
@@ -51996,16 +51995,7 @@ var Main = function (_a) {
         react_1.default.createElement(Modal_1.ModalForm, { method: "dialog" },
             react_1.default.createElement(Modal_1.ModalTitle, null, "Open Map Generator"),
             react_1.default.createElement(Modal_1.ModalBody, null),
-            react_1.default.createElement(Modal_1.ModalFooter, null),
-            react_1.default.createElement("hr", null),
-            react_1.default.createElement(Modal_1.ModalText, null,
-                "This plugin build by \u00A0",
-                react_1.default.createElement("a", { href: "https://basilebong.com" }, "Basile Bong"),
-                " is 100% open source."),
-            react_1.default.createElement("div", null,
-                react_1.default.createElement("a", { href: "https://basilebong.com" }, "Buy me a coffee"),
-                " | ",
-                react_1.default.createElement("a", { href: "https://github.com" }, "Report a bug")))));
+            react_1.default.createElement(Modal_1.ModalFooter, null))));
 };
 exports.default = Main;
 
@@ -52109,7 +52099,8 @@ var react_1 = tslib_1.__importDefault(__webpack_require__(/*! react */ "./node_m
 var adobe_1 = __webpack_require__(/*! context/adobe */ "./src/context/adobe/index.tsx");
 var styled_1 = tslib_1.__importDefault(__webpack_require__(/*! @emotion/styled */ "./node_modules/@emotion/styled/dist/styled.browser.esm.js"));
 var map_1 = __webpack_require__(/*! context/map */ "./src/context/map/index.tsx");
-var Footer = styled_1.default.div({
+var _1 = __webpack_require__(/*! . */ "./src/components/Modal/index.ts");
+var FooterActions = styled_1.default.div({
     display: "flex",
     alignItems: "flex-end",
     justifyContent: "flex-end",
@@ -52121,22 +52112,36 @@ var ModalFooter = function () {
     var adobeContext = adobe_1.useAdobeContext().adobeContext;
     var _a = map_1.useMapContext(), mapContext = _a.mapContext, setMapContext = _a.setMapContext;
     var dialog = adobeContext.dialog;
-    var style = mapContext.style, markerColor = mapContext.markerColor, lat = mapContext.lat, lng = mapContext.lng, zoom = mapContext.zoom, token = mapContext.token;
+    var style = mapContext.style, markerColor = mapContext.markerColor, lat = mapContext.lat, lng = mapContext.lng, zoom = mapContext.zoom, token = mapContext.token, displayMarker = mapContext.displayMarker, url = mapContext.url;
     var onClose = function () {
         return dialog ? dialog.close() : console.error("Missing dialog");
     };
     var onPreview = function () {
+        var marker = displayMarker
+            ? "pin-l+" + (markerColor ? markerColor : "333333") + "(" + lat + "," + lng + ")/"
+            : "";
         setMapContext({
             type: map_1.EMapContextActions.SET,
             payload: {
-                url: "https://api.mapbox.com/styles/v1/mapbox/" + style + "/static/pin-l+" + markerColor + "(" + lat + "," + lng + ")/" + lat + "," + lng + "," + zoom + ",0.00,0.00/" + width + "x" + height + "@2x?access_token=" + token
+                url: "https://api.mapbox.com/styles/v1/mapbox/" + style + "/static/" + marker + lat + "," + lng + "," + zoom + ",0.00,0.00/" + width + "x" + height + "@2x?access_token=" + token
             }
         });
+        console.log(url);
     };
-    return (react_1.default.createElement(Footer, null,
-        react_1.default.createElement("button", { "uxp-variant": "secondary", "uxp-quiet": "true", type: "button", onClick: function () { return onClose(); } }, "Cancel"),
-        react_1.default.createElement("button", { type: "button", "uxp-variant": "primary", onClick: function () { return onPreview(); } }, "Preview"),
-        react_1.default.createElement("button", { "uxp-variant": "cta", style: { marginRight: 0 }, type: "button" }, "Generate")));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(FooterActions, null,
+            react_1.default.createElement("button", { "uxp-variant": "secondary", "uxp-quiet": "true", type: "button", onClick: function () { return onClose(); } }, "Cancel"),
+            react_1.default.createElement("button", { type: "button", "uxp-variant": "primary", onClick: function () { return onPreview(); } }, "Preview"),
+            react_1.default.createElement("button", { "uxp-variant": "cta", style: { marginRight: 0 }, type: "button" }, "Generate")),
+        react_1.default.createElement("hr", null),
+        react_1.default.createElement(_1.ModalText, null,
+            "Build by \u00A0",
+            react_1.default.createElement("a", { href: "https://basilebong.com" }, "Basile Bong"),
+            ", 100% open source."),
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("a", { href: "https://basilebong.com" }, "Buy me a coffee"),
+            " | ",
+            react_1.default.createElement("a", { href: "https://github.com" }, "Report a bug"))));
 };
 exports.default = ModalFooter;
 
