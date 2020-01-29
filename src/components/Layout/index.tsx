@@ -14,7 +14,7 @@ interface IProps {
   dialog: HTMLDialogElement;
 }
 
-const Main = ({ selection, dialog }: IProps) => {
+const Main = ({ selection, dialog }: IProps): JSX.Element => {
   const { setAdobeContext } = useAdobeContext();
 
   useEffect(() => {

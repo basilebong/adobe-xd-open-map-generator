@@ -14,15 +14,17 @@ interface IProviderProps {
   children: React.ReactNode;
 }
 
-const initialAdobeContext: {
+interface IAdobeContext {
   adobeContext: IAdobe;
   setAdobeContext: React.Dispatch<IAdobeContextActions>;
-} = {
+}
+
+const initialAdobeContext: IAdobeContext = {
   adobeContext: {},
-  setAdobeContext: () => {}
+  setAdobeContext: () => null
 };
 
-const reducer = (state: IAdobe, action: IAdobeContextActions) => {
+const reducer = (state: IAdobe, action: IAdobeContextActions): IAdobe => {
   switch (action.type) {
     case EAdobeContextActions.SET:
       return merge({ ...state }, action.payload);
@@ -31,7 +33,9 @@ const reducer = (state: IAdobe, action: IAdobeContextActions) => {
 
 const AdobeContext = createContext(initialAdobeContext);
 
-export const AdobeContextProvider = ({ children }: IProviderProps) => {
+export const AdobeContextProvider = ({
+  children
+}: IProviderProps): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, {});
 
   return (
@@ -43,4 +47,4 @@ export const AdobeContextProvider = ({ children }: IProviderProps) => {
   );
 };
 
-export const useAdobeContext = () => useContext(AdobeContext);
+export const useAdobeContext = (): IAdobeContext => useContext(AdobeContext);

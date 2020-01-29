@@ -8,7 +8,7 @@ interface IProps {
   selection: any;
 }
 
-const App = ({ dialog, selection }: IProps) => {
+const App = ({ dialog, selection }: IProps): JSX.Element => {
   return (
     <>
       <AdobeContextProvider>

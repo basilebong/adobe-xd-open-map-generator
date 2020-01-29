@@ -2,11 +2,11 @@ import React from "react";
 import { useMapContext, EMapContextActions } from "context/map";
 import { Label, FormGroup } from ".";
 
-const ZoomSlider = () => {
+const ZoomSlider = (): JSX.Element => {
   const { mapContext, setMapContext } = useMapContext();
   const { zoom } = mapContext;
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
     setMapContext({
       type: EMapContextActions.SET,
       payload: {
@@ -25,7 +25,7 @@ const ZoomSlider = () => {
         min={1}
         max={20}
         defaultValue={zoom}
-        onChange={e => onChange(e)}
+        onChange={(e): void => onChange(e)}
       />
     </FormGroup>
   );

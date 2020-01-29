@@ -14,7 +14,7 @@ const FooterActions = styled.div({
 const width = 450;
 const height = 200;
 
-const ModalFooter = () => {
+const ModalFooter = (): JSX.Element => {
   const { adobeContext } = useAdobeContext();
   const { mapContext, setMapContext } = useMapContext();
   const { dialog } = adobeContext;
@@ -29,10 +29,10 @@ const ModalFooter = () => {
     url
   } = mapContext;
 
-  const onClose = () =>
+  const onClose = (): void =>
     dialog ? dialog.close() : console.error("Missing dialog");
 
-  const onPreview = () => {
+  const onPreview = (): void => {
     const marker = displayMarker
       ? `pin-l+${markerColor ? markerColor : "333333"}(${lat},${lng})/`
       : "";
@@ -54,11 +54,15 @@ const ModalFooter = () => {
           uxp-variant="secondary"
           uxp-quiet="true"
           type="button"
-          onClick={() => onClose()}
+          onClick={(): void => onClose()}
         >
           Cancel
         </button>
-        <button type="button" uxp-variant="primary" onClick={() => onPreview()}>
+        <button
+          type="button"
+          uxp-variant="primary"
+          onClick={(): void => onPreview()}
+        >
           Preview
         </button>
         <button uxp-variant="cta" style={{ marginRight: 0 }} type="button">

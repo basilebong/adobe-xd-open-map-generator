@@ -3,11 +3,11 @@ import React from "react";
 import { FormGroup, Label, Input } from ".";
 import { useMapContext, EMapContextActions } from "context/map";
 
-const LatInput = () => {
+const LatInput = (): JSX.Element => {
   const { mapContext, setMapContext } = useMapContext();
   const { lat } = mapContext;
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const currentLat = e.currentTarget.value.replace(",", ".");
     setMapContext({
       type: EMapContextActions.SET,
@@ -21,7 +21,7 @@ const LatInput = () => {
     <>
       <FormGroup>
         <Label>Latitude</Label>
-        <Input type="number" value={lat} onChange={e => onChange(e)} />
+        <Input type="number" value={lat} onChange={(e): void => onChange(e)} />
       </FormGroup>
     </>
   );

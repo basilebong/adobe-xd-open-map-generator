@@ -1,3 +1,4 @@
+/* eslint-disable */
 const path = require("path");
 
 module.exports = {
@@ -10,6 +11,12 @@ module.exports = {
   devtool: "none",
   module: {
     rules: [
+      {
+        enforce: "pre",
+        test: /\.(t|j)s(x?)$/,
+        exclude: /node_modules/,
+        loader: "eslint-loader"
+      },
       {
         test: /\.ts(x?)$/,
         exclude: /node_modules/,

@@ -19,15 +19,17 @@ interface IProviderProps {
   children: React.ReactNode;
 }
 
-const initialMapContext: {
+interface IMapContext {
   mapContext: IMap;
   setMapContext: React.Dispatch<IMapContextActions>;
-} = {
+}
+
+const initialMapContext: IMapContext = {
   mapContext: defaultMapContext,
-  setMapContext: () => {}
+  setMapContext: () => null
 };
 
-const reducer = (state: IMap, action: IMapContextActions) => {
+const reducer = (state: IMap, action: IMapContextActions): IMap => {
   switch (action.type) {
     case EMapContextActions.SET:
       return merge({ ...state }, action.payload);
@@ -36,7 +38,9 @@ const reducer = (state: IMap, action: IMapContextActions) => {
 
 const MapContext = createContext(initialMapContext);
 
-export const MapContextProvider = ({ children }: IProviderProps) => {
+export const MapContextProvider = ({
+  children
+}: IProviderProps): JSX.Element => {
   const [state, dispatch] = useReducer(reducer, defaultMapContext);
 
   return (
@@ -46,4 +50,4 @@ export const MapContextProvider = ({ children }: IProviderProps) => {
   );
 };
 
-export const useMapContext = () => useContext(MapContext);
+export const useMapContext = (): IMapContext => useContext(MapContext);

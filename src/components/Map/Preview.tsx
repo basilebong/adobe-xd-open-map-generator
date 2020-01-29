@@ -10,11 +10,11 @@ const ImageMap = styled.img({
   margin: "15px auto 0 auto"
 });
 
-const MapPreview = () => {
+const MapPreview = (): JSX.Element => {
   const { mapContext } = useMapContext();
   const { url } = mapContext;
 
-  useEffect(() => {}, [url]);
+  useEffect(() => undefined, [url]);
 
   return <>{url ? <ImageMap src={url} /> : null}</>;
 };

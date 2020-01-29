@@ -3,11 +3,11 @@ import React from "react";
 import { FormGroup, Label, Input } from ".";
 import { useMapContext, EMapContextActions } from "context/map";
 
-const LngInput = () => {
+const LngInput = (): JSX.Element => {
   const { mapContext, setMapContext } = useMapContext();
   const { lng } = mapContext;
 
-  const onChange = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChange = (e: React.FormEvent<HTMLInputElement>): void => {
     const currentLng = e.currentTarget.value.replace(",", ".");
     setMapContext({
       type: EMapContextActions.SET,
@@ -21,7 +21,7 @@ const LngInput = () => {
     <>
       <FormGroup>
         <Label>Longitude</Label>
-        <Input type="number" value={lng} onChange={e => onChange(e)} />
+        <Input type="number" value={lng} onChange={(e): void => onChange(e)} />
       </FormGroup>
     </>
   );

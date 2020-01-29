@@ -15,7 +15,7 @@ const InputGroup = styled.div({
   margin: 0
 });
 
-const ModalBody = () => (
+const ModalBody = (): JSX.Element => (
   <>
     <InputGroup>
       <StyleSelect />
