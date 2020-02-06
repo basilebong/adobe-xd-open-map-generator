@@ -1,4 +1,5 @@
 import "./react-shim";
+
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
@@ -9,7 +10,10 @@ const initApp = (selection: any): void => {
   const getDialog = (): HTMLDialogElement => {
     if (dialog == null) {
       dialog = document.createElement("dialog");
-      ReactDOM.render(<App dialog={dialog} selection={selection} />, dialog);
+      ReactDOM.render(
+        <App dialog={dialog} selection={selection.items} />,
+        dialog
+      );
     }
     return dialog;
   };
@@ -17,8 +21,8 @@ const initApp = (selection: any): void => {
   return document.body.appendChild(getDialog()).showModal();
 };
 
-module.exports = {
+export default {
   commands: {
-    initApp
+    openMapGenerator: initApp
   }
 };

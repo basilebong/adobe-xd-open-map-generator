@@ -27,7 +27,7 @@ const initialAdobeContext: IAdobeContext = {
 const reducer = (state: IAdobe, action: IAdobeContextActions): IAdobe => {
   switch (action.type) {
     case EAdobeContextActions.SET:
-      return merge({ ...state }, action.payload);
+      return merge({}, state, action.payload);
   }
 };
 

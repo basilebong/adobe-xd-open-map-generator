@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 if (window.setTimeout == null) {
   window.setTimeout = function(fn) {
     fn();

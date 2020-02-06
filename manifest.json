@@ -1,5 +1,8 @@
 {
   "name": "Open Map Generator",
+  "languages": ["en"],
+  "author": "Basile Bong",
+  "helpUrl": "https://github.com/basilebong/adobe-xd-open-map-generator/issues",
   "host": {
     "app": "XD",
     "minVersion": "21.0"
@@ -21,7 +24,7 @@
     {
       "label": "Open Map Generator",
       "type": "menu",
-      "commandId": "initApp"
+      "commandId": "openMapGenerator"
     }
   ],
   "version": "1.0.0"

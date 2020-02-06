@@ -4,13 +4,14 @@ import {
   ModalTitle,
   ModalForm,
   ModalFooter,
-  ModalBody
+  ModalBody,
+  ModalEmptySelectionError
 } from "components/Modal";
 
 import { useAdobeContext, EAdobeContextActions } from "context/adobe";
 
 interface IProps {
-  selection: any;
+  selection?: any;
   dialog: HTMLDialogElement;
 }
 
@@ -27,15 +28,24 @@ const Main = ({ selection, dialog }: IProps): JSX.Element => {
     });
   }, []);
 
-  return (
-    <>
+  const selectionLength = Object.entries(selection).length;
+
+  if (selectionLength === 1) {
+    return (
       <ModalForm method="dialog">
         <ModalTitle>Open Map Generator</ModalTitle>
+        <hr />
         <ModalBody />
         <ModalFooter />
       </ModalForm>
-    </>
-  );
+    );
+  } else {
+    return (
+      <ModalForm method="dialog">
+        <ModalEmptySelectionError />
+      </ModalForm>
+    );
+  }
 };
 
 export default Main;

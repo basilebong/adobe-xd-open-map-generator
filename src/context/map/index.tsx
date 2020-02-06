@@ -32,7 +32,7 @@ const initialMapContext: IMapContext = {
 const reducer = (state: IMap, action: IMapContextActions): IMap => {
   switch (action.type) {
     case EMapContextActions.SET:
-      return merge({ ...state }, action.payload);
+      return merge({}, state, action.payload);
   }
 };
 
